@@ -45,6 +45,7 @@ rewards.checkConditionAndRewardUser = async function (params: { uid: string, con
     const isActive = await isConditionActive(condition);
     if (!isActive) {
         return;
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
     }
     const ids = await getIDsByCondition(condition);
     let rewardData = await getRewardDataByIDs(ids);
@@ -52,6 +53,7 @@ rewards.checkConditionAndRewardUser = async function (params: { uid: string, con
     rewardData = rewardData.filter(Boolean);
     if (!rewardData || !rewardData.length) {
         return;
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
     }
     const eligible = await Promise.all(rewardData.map(reward => checkCondition(reward, method)));
     const eligibleRewards = rewardData.filter((reward, index) => eligible[index]);
